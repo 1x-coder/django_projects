@@ -1,0 +1,19 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header %}
+<div class='jumbotron'>
+    <h1>Reserve a Space for Your Learning Logs</h1>
+</div>
+{% endblock header %}
+
+{% block content %}
+<h2>
+    <a href="{% url 'users:register' %}">Register an account</a> to make
+    your own Learning Log, A learning log is a space where you can write your thoughts, feelings, and questions about what you are studying.
+</h2>
+<h2>
+   Learning new knowledge and applying it within a skills context usually takes time.
+Your learning log is a written record of your perception of how you are "learning to learn." It is a begin to evaluate their own effective application of learning.
+
+</h2>
+{% endblock content %}

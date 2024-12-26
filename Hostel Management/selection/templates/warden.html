@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="wrapper">
+
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell">
+                    Hostel
+                </div>
+                <div class="cell">
+                    Room No
+                </div>
+                <div class="cell">
+                    Type
+                </div>
+                <div class="cell">
+                    Status
+                </div>
+                <div class="cell">
+                    Student Name
+                </div>
+                <div class="cell">
+                    Enrollment No
+                </div>
+                <div class="cell">
+                    Course
+                </div>
+                <div class="cell">
+                    Gender
+                </div>
+                <div class="cell">
+                    Maintenance
+                </div>
+
+            </div>
+            {% for room in rooms %}
+                <div class="row">
+                    <div class="cell" data-title="Number">
+                        {{ room.hostel.name }}
+                    </div>
+                    <div class="cell" data-title="Name">
+                        {{ room.no }}
+                    </div>
+                    <div class="cell" data-title="Type">
+                        {{ room.room_type }}
+                    </div>
+                    <div class="cell" style="{% if room.vacant %} color: green {% else %} color :blue {% endif %}" data-title="Status">
+                        {% if room.vacant %} vacant {% else %} occupied {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.student_name }}
+                        {% endif %}
+                    </div>
+                     <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.enrollment_no }}
+                        {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.course.code }}
+                        {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.gender }}
+                        {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.repair %}
+                             {{ room.repair }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'leave_admin' %}">
+        Leave requests
+    </a>
+    <a href="{% url 'empty_rooms' %}">
+        Empty Rooms
+    </a>
+    <a href="{% url 'present_leaves' %}">
+        Present Leave
+    </a>
+    <a href="{% url 'guest_requests' %}">
+        Guest Room Requests
+    </a>
+    <a href="{% url 'warden_dues' %}">
+        Dues
+    </a>
+    <a href="{% url 'warden_add_due' %}">
+        Add Due
+    </a>
+    <a href="{% url 'warden_remove_due' %}">
+        Remove Due
+    </a>
+    <a href="{% url 'logout' %}">
+        Logout
+    </a>
+{% endblock more_links %}
+
